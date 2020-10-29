@@ -48,17 +48,29 @@ description = [
     'Авацератопс относится к семейству цератопсидов -травоядных динозавров с клювами, подобными клювам попугаев, которые процветали во время мелового периода на территории Северной Америки и Азии.'
 ]
 
+dict_animals = {
+    "Аброний": "Ящерицы из рода Аброний обычно очень медленные, но при опасности могут спрыгнуть на землю",
+    'Абудефдуф': "Абудефдуф обыкновенный (Abudefduf vaigiensis) или рыба-сержант - одна из самых часто встречающихся",
+    'Авацератопс': "Авацератопс относится к семейству цератопсидов -травоядных динозавров с клювами, подобными клювам попугаев, которые процветали во время мелового периода на территории Северной Америки и Азии."
+}
+
+dict_animals_img = {
+    "Аброний": "https://ru.wikipedia.org/wiki/%D0%90%D0%B1%D1%80%D0%BE%D0%BD%D0%B8%D0%B8#/media/%D0%A4%D0%B0%D0%B9%D0%BB:Arboreal_Alligator_Lizard_Abronia_graminea_2900px.jpg",
+    'Абудефдуф': "Абудефдуф обыкновенный (Abudefduf vaigiensis) или рыба-сержант - одна из самых часто встречающихся",
+    'Авацератопс': "Авацератопс относится к семейству цератопсидов -травоядных динозавров с клювами, подобными клювам попугаев, которые процветали во время мелового периода на территории Северной Америки и Азии."
+}
+
 
 @app.route('/')
 def index():
     animal = list_animals[random.randint(0, (len(list_animals) - 1))]
-    return render_template('index.html', animal=animal, animals=list_animals)
+    return render_template('index.html', animal=animal, animals=dict_animals)
 
 
-@app.route('/descriptionAnimal/{index}')
-def descriptionAnimal(index):
+@app.route('/descriptionAnimal/<key>')
+def descriptionAnimal(key):
     animal = list_animals[random.randint(0, (len(list_animals) - 1))]
-    return render_template('descriptionAnimal.html', animal=animal, animals=list_animals)
+    return render_template('descriptionAnimal.html', key=key, animal=animal, animals=dict_animals)
 
 
 @app.route('/about/')
