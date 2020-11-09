@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template
 import random
+from data import tours, departures
 
 app = Flask(__name__)
 
@@ -63,8 +64,8 @@ dict_animals_img = {
 
 @app.route('/')
 def index():
-    animal = list_animals[random.randint(0, (len(list_animals) - 1))]
-    return render_template('index.html', animal=animal, animals=dict_animals)
+    #animal = list_animals[random.randint(0, (len(list_animals) - 1))]
+    return render_template('index.html', tours=tours)
 
 
 @app.route('/descriptionAnimal/<key>')
