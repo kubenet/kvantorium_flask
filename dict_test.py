@@ -1,6 +1,4 @@
 from data import tours
-
-for tour in tours:
-    print(tours[tour]["title"])
+print(tours[5]["title"])
 
 

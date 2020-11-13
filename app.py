@@ -71,7 +71,7 @@ def index():
 @app.route('/descriptionAnimal/<key>')
 def descriptionAnimal(key):
     animal = list_animals[random.randint(0, (len(list_animals) - 1))]
-    return render_template('descriptionAnimal.html', key=key, animal=animal, animals=dict_animals)
+    return render_template('descriptionAnimal.html', key=key, animal=animal, animals=dict_animals, tours=tours)
 
 
 @app.route('/about/')
