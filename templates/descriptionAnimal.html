@@ -88,8 +88,28 @@
   <!-- Main jumbotron for a primary marketing message or call to action -->
   <div class="jumbotron">
     <div class="container">
-      <h1 class="display-3">{{ key }} !</h1>
+      <h1 class="display-3">{{ tours[key|int]["title"] }} !</h1>
       <p> {{ tours[key|int]["description"] }} </p>
+      <p><h2> Количество звезд отеля:
+        {% for i in range(tours[key|int]["stars"]|int) %}
+          &#11088;
+        {% endfor %}
+    </h2></p>
+      <img src="{{ tours[key|int]["picture"] }} width="800" height="600">
+      <p> {{ tours[key|int]["price"] }} </p>
+      <p> {{ tours[key|int]["country"] }} </p>
+      <p> {{ tours[key|int]["nights"] }} </p>
+      <p> {{ tours[key|int]["date"] }} </p>
+      <p> {{animals|first}} </p>
+      <p> {{animals|last}} </p>
+      <p> {{animals|min}} </p>
+      <p> {{animals|max}} </p>
+      {% for animal in animals %}
+        {% if animal|length > 12 %}
+          <p>Название животного: {{ animal }}</p>
+        {% endif %}
+      {% endfor %}
+
       <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
     </div>
   </div>
@@ -97,8 +117,8 @@
   <div class="container">
     <!-- Example row of columns -->
     <div class="row">
-     <img src="  ">
-      <p> {{ animals[key] }} </p>
+
+
 
     </div>
 
