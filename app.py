@@ -1,9 +1,11 @@
-from flask import Flask, request, render_template
 import random
+from flask import Flask, request, render_template
 from data import tours, departures
+import operator
 
 app = Flask(__name__)
 
+# список животных для отображения демо версии продукта
 list_animals = [
     'Абронии',
     'Абудефдуфы',
@@ -61,17 +63,34 @@ dict_animals_img = {
     'Авацератопс': "Авацератопс относится к семейству цератопсидов -травоядных динозавров с клювами, подобными клювам попугаев, которые процветали во время мелового периода на территории Северной Америки и Азии."
 }
 
+# создание словаря с ценами туров
+list_tours = {}
+for tour in tours:
+    list_tours.setdefault(tour, tours[tour]["price"])
+
+sorted_x = sorted(list_tours.items(), key=operator.itemgetter(1))
+print(sorted_x)
+print(sorted_x[0][0])
+print(sorted_x[0][1])
+print(list_tours)
+
 
 @app.route('/')
 def index():
-    #animal = list_animals[random.randint(0, (len(list_animals) - 1))]
-    return render_template('index.html', tours=tours)
+    # animal = list_animals[random.randint(0, (len(list_animals) - 1))]
+    return render_template('index.html', tours=tours, list_tours=list_tours)
+
+
+@app.route('/indexSortCostMax')
+def indexSortCostMax():
+    return render_template('indexSortCostMax.html', tours=tours, list_tours=list_tours)
 
 
 @app.route('/descriptionAnimal/<key>')
 def descriptionAnimal(key):
     animal = list_animals[random.randint(0, (len(list_animals) - 1))]
-    return render_template('descriptionAnimal.html', key=key, animal=animal, animals=list_animals, tours=tours)
+    return render_template('descriptionAnimal.html', key=key, animal=animal, animals=list_animals, tours=tours,
+                           departures=departures)
 
 
 @app.route('/about/')

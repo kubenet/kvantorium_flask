@@ -95,8 +95,9 @@
           &#11088;
         {% endfor %}
     </h2></p>
-      <img src="{{ tours[key|int]["picture"] }} width="800" height="600">
+      <img src="{{ tours[key|int]["picture"] }}" width="800" height="600">
       <p> {{ tours[key|int]["price"] }} </p>
+      <p> {{ departures[ tours[key|int]["departure"] ] }} </p>
       <p> {{ tours[key|int]["country"] }} </p>
       <p> {{ tours[key|int]["nights"] }} </p>
       <p> {{ tours[key|int]["date"] }} </p>

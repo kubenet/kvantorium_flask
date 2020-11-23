@@ -71,9 +71,9 @@
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
         <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <a class="dropdown-item" href="{{ url_for('indexSortCostMax') }}">Сортировка по цене (возрастание)</a>
+          <a class="dropdown-item" href="indexSortCostMin">Сортировка по цене (убывание)</a>
+          <a class="dropdown-item" href="indexSortStars">Сортировка по кол-ву звёзд </a>
         </div>
       </li>
     </ul>
@@ -99,12 +99,12 @@
     <!-- Example row of columns -->
     <div class="row">
 
-      {% for tour in tours %}
+      {% for tour in list_tours|dictsort(false, 'value', reverse = True) %}
       <div class="col-md-3 mr-3 ml-3 mp-3 mt-3">
-        <h2>{{ tours[tour]["title"] }}</h2>
-        <p> {{ tours[tour]["description"] }} </p>
-        <img src="{{ tours[tour]["picture"] }} width="100" height="120">
-        <p><a class="btn btn-secondary" href="{{ url_for('descriptionAnimal', key=tour) }}" role="button">Подробнее &raquo;</a></p>
+                <h2>{{ tours[tour[0]]["title"] }}</h2>
+                <p> {{ tours[tour[0]]["description"] }} </p>
+                <img src="{{ tours[tour[0]]["picture"] }}" width="140" height="160">
+      <p><a class="btn btn-secondary" href="{{ url_for('descriptionAnimal', key=tour[0]) }}" role="button">Подробнее &raquo;</a></p>
       </div>
       {% endfor %}
 
